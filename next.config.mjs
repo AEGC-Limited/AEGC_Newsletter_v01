@@ -4,8 +4,8 @@ const nextConfig = {
     images: { unoptimized: true },
     // basePath: "/matdash-nextjs",
     // assetPrefix: "/matdash-nextjs",
-    // output: 'export',
-    // trailingSlash: true
+    output: 'export',
+    trailingSlash: true
 };
 
 export default nextConfig;
