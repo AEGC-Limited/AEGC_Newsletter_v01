@@ -35,8 +35,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false)
   }, [])
 
-  const login = async (username: string, password: string, rememberMe: boolean) => {
-    const data = await authApi.login(username, password, rememberMe)
+  const login = async (username: string, password: string) => {
+    const data = await authApi.login(username, password)
     
     const userData: User = {
       id: data.user.id,
@@ -47,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     // Store based on remember me preference
-    const storage = rememberMe ? localStorage : sessionStorage
+    const storage = localStorage
     storage.setItem('token', data.accessToken)  // Updated to accessToken
     storage.setItem('user', JSON.stringify(userData))
 

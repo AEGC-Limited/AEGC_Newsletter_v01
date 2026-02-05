@@ -303,8 +303,8 @@ export const Login = () => {
 
   const [formData, setFormData] = useState({
     username: '',
-    password: '',
-    rememberMe: false
+    password: ''
+    // rememberMe: false
   })
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({
@@ -388,8 +388,8 @@ export const Login = () => {
     try {
       const data: LoginResponse = await authApi.login(
         formData.username,
-        formData.password,
-        formData.rememberMe
+        formData.password
+        // formData.rememberMe
       )
 
       // Check if account is locked
@@ -403,7 +403,7 @@ export const Login = () => {
       }
 
       // Store token and user data
-      const storage = formData.rememberMe ? localStorage : sessionStorage
+      const storage = localStorage
       storage.setItem('token', data.accessToken)
       storage.setItem('user', JSON.stringify(data.user))
 
@@ -503,7 +503,7 @@ export const Login = () => {
               <div className='flex items-center gap-2'>
                 <Checkbox
                   id='rememberMe'
-                  checked={formData.rememberMe}
+                  // checked={formData.rememberMe}
                   onCheckedChange={(checked) =>
                     setFormData(prev => ({ ...prev, rememberMe: checked as boolean }))
                   }
@@ -564,8 +564,12 @@ export const Login = () => {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className='hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-400 via-purple-300 to-purple-200 relative overflow-hidden'>
-        {/* Illustration code here */}
+      <div className='hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-400 via-purple-300 to-purple-200 relative overflow-hidden items-center justify-center'>
+        <img
+          src='/images/backgrounds/login-illustration.png'
+          alt='Login illustration'
+          className='w-full h-full object-cover'
+        />
       </div>
     </div>
   )

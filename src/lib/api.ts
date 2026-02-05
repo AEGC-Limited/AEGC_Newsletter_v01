@@ -152,10 +152,10 @@ export interface LoginResponse {
 }
 
 export const authApi = {
-  login: async (username: string, password: string, rememberMe: boolean) => {
+  login: async (username: string, password: string) => {
     return apiRequest<LoginResponse>('/api/Auth/login', {
       method: 'POST',
-      body: JSON.stringify({ username, password, rememberMe }),
+      body: JSON.stringify({ username, password }),
     })
   },
   
