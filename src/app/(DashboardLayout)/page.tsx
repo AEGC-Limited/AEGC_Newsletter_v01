@@ -4,6 +4,7 @@ import SubscriberGrowthChart from "../components/dashboard/SubscriberGrowthChart
 import SubscribersByCategory from "../components/dashboard/SubscribersByCategory";
 import CampaignPerformanceTable from "../components/dashboard/CampaignPerformanceTable";
 import RecentSubscribers from "../components/dashboard/RecentSubscribers";
+import EmailEngagementChart from "../components/dashboard/Emailchart";
 import Link from "next/link";
 
 const page = () => {
@@ -43,6 +44,9 @@ const page = () => {
           <CampaignPerformanceTable />
         </div>
 
+<div className="lg:col-span-12 col-span-12">
+          <EmailEngagementChart />
+        </div>
         {/* Recent Subscribers Activity */}
         <div className="lg:col-span-12 col-span-12">
           <RecentSubscribers />

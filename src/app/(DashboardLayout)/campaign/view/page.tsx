@@ -746,41 +746,96 @@ const EmailCampaignDashboard = () => {
   };
 
   // Send campaign
-  const handleSendCampaign = async () => {
-    if (!campaignToSend) return;
+  // const handleSendCampaign = async () => {
+  //   if (!campaignToSend) return;
     
-    try {
-      setIsSending(true);
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  //   try {
+  //     setIsSending(true);
+  //     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       
-      const response = await fetch(`${API_BASE_URL}/api/Newsletter/campaigns/${campaignToSend.id}/send`, {
+  //     const response = await fetch(`${API_BASE_URL}/api/Newsletter/campaigns/${campaignToSend.id}/send`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //         'Content-Type': 'application/json'
+  //       }
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || 'Failed to send campaign');
+  //     }
+
+  //     const data = await response.json();
+      
+  //     alert(`Campaign sent successfully!\nSuccess: ${data.successCount}\nFailed: ${data.failedCount}`);
+      
+  //     await fetchCampaigns();
+  //     setSendModalOpen(false);
+  //     setCampaignToSend(null);
+  //   } catch (err) {
+  //     const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+  //     alert(`Error sending campaign: ${errorMessage}`);
+  //     console.error('Error sending campaign:', err);
+  //   } finally {
+  //     setIsSending(false);
+  //   }
+  // };
+
+  const handleSendCampaign = async () => {
+  if (!campaignToSend) return;
+  
+  try {
+    setIsSending(true);
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    
+    // ✅ FIX: Add targetAudience in request body
+    const response = await fetch(
+      `${API_BASE_URL}/api/Newsletter/campaigns/${campaignToSend.id}/send`, 
+      {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to send campaign');
+        },
+        // ✅ CRITICAL: Send request body with targetAudience
+        body: JSON.stringify({
+          targetAudience: ["All Subscribers"] // Default to all subscribers
+        })
       }
+    );
 
-      const data = await response.json();
-      
-      alert(`Campaign sent successfully!\nSuccess: ${data.successCount}\nFailed: ${data.failedCount}`);
-      
-      await fetchCampaigns();
-      setSendModalOpen(false);
-      setCampaignToSend(null);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
-      alert(`Error sending campaign: ${errorMessage}`);
-      console.error('Error sending campaign:', err);
-    } finally {
-      setIsSending(false);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to send campaign');
     }
-  };
+
+    const data = await response.json();
+    
+    // Show success message with details
+    const message = `✅ Campaign sent successfully!\n\n` +
+      `📧 Sent: ${data.successCount}\n` +
+      `❌ Failed: ${data.failedCount}\n` +
+      `📊 Total: ${data.totalSent}\n\n` +
+      (data.categoryBreakdown && data.categoryBreakdown.length > 0
+        ? `Categories:\n${data.categoryBreakdown.map((cat: any) => 
+            `  • ${cat.category}: ${cat.recipientCount}`).join('\n')}`
+        : '');
+    
+    alert(message);
+    
+    // Refresh campaigns list
+    await fetchCampaigns();
+    setSendModalOpen(false);
+    setCampaignToSend(null);
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+    alert(`❌ Error sending campaign:\n${errorMessage}`);
+    console.error('Error sending campaign:', err);
+  } finally {
+    setIsSending(false);
+  }
+};
 
   // Delete campaign
   const handleDeleteCampaign = async () => {
