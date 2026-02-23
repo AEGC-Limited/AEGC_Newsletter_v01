@@ -1620,6 +1620,8 @@ Tip: Keep it concise and engaging!"
                     <SelectItem value="update">Update</SelectItem>
                     <SelectItem value="promotion">Promotion</SelectItem>
                     <SelectItem value="event">Event</SelectItem>
+                    <SelectItem value="website">Website</SelectItem>
+
                   </SelectContent>
                 </Select>
               </div>
