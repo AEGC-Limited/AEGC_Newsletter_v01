@@ -42,6 +42,7 @@ const SidebarContent: MenuItem[] = [
         url: "/",
         isPro: false
       },
+      
       {
         name: "Add Campaign",
         icon: "solar:add-circle-bold-duotone",
@@ -61,6 +62,106 @@ const SidebarContent: MenuItem[] = [
         icon: "solar:users-group-two-rounded-bold-duotone",
         id: uniqueId(),
         url:"/subscriber",
+        isPro: false
+      },
+      
+
+      // {
+      //   name: "Dashboard2",
+      //   icon: "solar:chart-line-duotone",
+      //   id: uniqueId(),
+      //   url:"#!",
+      //   isPro: true
+      // },
+      // {
+      //   name: "Dashboard3",
+      //   icon: "solar:screencast-2-line-duotone",
+      //   id: uniqueId(),
+      //   url:"#!",
+      //   isPro: true
+      // },
+      // {
+      //   name: 'Front Pages',
+      //   id: uniqueId(),
+      //   icon: 'solar:home-angle-linear',
+      //   url: '#',
+      //   children: [
+      //     {
+      //       name: "Homepage",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "About Us",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "Blog",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "Blog Details",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "Contact Us",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "Portfolio",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //     {
+      //       name: "Pricing",
+      //       id: uniqueId(),
+      //       url:"#!",
+      //       isPro: true
+      //     },
+      //   ],
+      // },
+    ],
+  },
+  {
+    heading: 'TIH Newsletter',
+    children: [
+      {
+        name: "Dashboard",
+        icon: "solar:home-2-bold-duotone",
+        id: uniqueId(),
+        url: "/tihNewsletter",
+        isPro: false
+      },
+      
+      {
+        name: "Add Campaign",
+        icon: "solar:add-circle-bold-duotone",
+        id: uniqueId(),
+        url:"/tihNewsletter/campaigns/add",
+        isPro: false
+      },
+      {
+        name: "View Campaign",
+        icon: "solar:chart-2-bold-duotone",
+        id: uniqueId(),
+        url:"/tihNewsletter/campaigns/view",
+        isPro: false
+      },
+      {
+        name: "Subscribers",
+        icon: "solar:users-group-two-rounded-bold-duotone",
+        id: uniqueId(),
+        url:"/tihNewsletter/subscribers",
         isPro: false
       },
       
