@@ -1,0 +1,1 @@
+declare module 'tailwind-sidebar/styles.css';

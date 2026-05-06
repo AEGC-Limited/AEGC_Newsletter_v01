@@ -164,6 +164,13 @@ const SidebarContent: MenuItem[] = [
         url:"/tihNewsletter/subscribers",
         isPro: false
       },
+      {
+        name: "View Applicant",
+        icon: "solar:chart-2-bold-duotone",
+        id: uniqueId(),
+        url:"/tihNewsletter/application",
+        isPro: false
+      },
       
 
       // {
